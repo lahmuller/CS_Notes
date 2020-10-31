@@ -177,6 +177,42 @@ int main(){
 }
 // output Found at index 6, if not found, the index will be very big(4294967295)
 ```
+
+### lower and upper the case of characters
+* tolower(char c),toupper(char c)
+  ```cpp
+  main(){
+    char a='a';
+    char b='B';
+    a=toupper(a);//a='A'
+    b=tolower(b);//b='b'
+  }
+  ```
+* transform
+  ```cpp
+  #include<iostream>
+  #include<algorithm> //transform
+  #include<string>
+  using namespace std;
+  main(){
+    string s="ABCDE";
+    transform(s.begin(),s.end(),s.begin(),::tolower);
+    // s="abcde";
+  }
+  ```
+
+### substr()
+```cpp
+#include<iostream>
+using namespace std;
+int main(){
+  string s="abcdefg";
+  s=s.substr(1);//s="bcdefg"
+  s=s.substr(2,3);//s="def"
+  //2 is the start index, 3 is the length of substr we want
+}
+```
+
 ## STL
 ### vector
 ```cpp
@@ -284,5 +320,71 @@ int main(){
     //判断一个元素是否在set中
     if(st.find(x)!=st.end()) printf("x is in set");
     else printf("x is not in set");
+  }
+  ```
+
+### map
+* iterator find(key)
+    ```cpp
+    #include<map>
+    using namespace std;
+    int main(){
+      map<string,int> mymap {{"aa",1},{"bb",2}};
+      if(mymap.find("cc")==mymap.end()) printf("Not Found");
+    }
+    ```
+* count
+  ```cpp
+    #include<map>
+    using namespace std;
+    int main(){
+      map<string,int> mymap {{"aa",1},{"bb",2}};
+      if(mymap.count("cc")==0) printf("Not Found");
+    }
+    ```
+
+### stack
+```cpp
+#include<iostream>
+#include<stack>
+using namespace std;
+int main(){
+  stack<int> s;
+  s.push(1);
+  s.pop();
+  if(!s.empty()) cout<<s.top();
+}
+```
+### queue
+```cpp
+#include<iostream>
+#include<queue>
+using namespace std;
+main(){
+  queue<int> q;
+  q.push(1);
+  int a=q.front();//the first element
+  a=q.back();//the last element
+  q.pop();//pop out the first element
+  int len = q.size();//the number of element in queue
+  bool is_empty=q.empty();
+}
+```
+
+
+  ## other functions
+  ### isalnum(char c), judge whether ***c*** is a alphabet or number
+
+  ### 左边补全0
+  ```cpp
+  #include<iostream>
+  #include<iomanip>
+  using namespace std;
+  int main(){
+	int a=6;
+	cout << setw(3) << setfill('0') << a << endl;//006
+	cout << a << endl;//6
+  printf("%03d",a)//006
+	return 0;
   }
   ```
