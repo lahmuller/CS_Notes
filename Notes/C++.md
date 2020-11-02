@@ -372,12 +372,13 @@ main(){
 ```
 
 
-  ## other functions
-  ### isalnum(char c), judge whether ***c*** is a alphabet or number
+  ## other tips
+  ### isalnum(char c)
+  >judge whether ***c*** is a alphabet or number
 
-  ### 左边补全0
+  ### 左边补0
   ```cpp
-  #include<iostream>
+  #include<iostream>//setw,setfill
   #include<iomanip>
   using namespace std;
   int main(){
@@ -388,3 +389,5 @@ main(){
 	return 0;
   }
   ```
+  ### default value
+  * The default values of a boolean array in c++ are undefined. Depending on the compiler, it may be set to *false*.
