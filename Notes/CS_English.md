@@ -6,7 +6,7 @@
 | default | 默认的 |
 | carriage return | 回车 |
 | alphanumerical | 字母数字混编的 |
-| lexicographical | 词典编撰的 |
+| lexicographical order | 字典序 |
 | recursion | 递归 |
 | | |
 | | |
