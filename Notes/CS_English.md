@@ -8,7 +8,7 @@
 | alphanumerical | 字母数字混编的 |
 | lexicographical order | 字典序 |
 | recursion | 递归 |
-| | |
+| acyclic | 非周期的；非循环的；无环的；非环状的 |
 | | |
 | | |
 | | |
