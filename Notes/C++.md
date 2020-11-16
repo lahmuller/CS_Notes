@@ -282,6 +282,18 @@ int main(){
   //size=0,capacity=0
   ```
   [Reference](http://c.biancheng.net/view/348.html)
+* find
+  
+  vector dones't have find() itself, but we can use the find() in algorithm
+  ```cpp
+  #include<algorithm>
+  using namespace std;
+  int main(){
+    vector<int> v;
+    v.push_back(1);
+    if(find(v.begin(),v.end(),1)==v.end()) printf("no 1 in vector");
+  }
+  ```
   
 ### set //元素自动升序排序存储
 * insert
@@ -372,22 +384,36 @@ main(){
 ```
 
 
-  ## other tips
-  ### isalnum(char c)
-  >judge whether ***c*** is a alphabet or number
+## other tips
+### isalnum(char c)
+>judge whether ***c*** is a alphabet or number
 
-  ### 左边补0
-  ```cpp
-  #include<iostream>//setw,setfill
-  #include<iomanip>
-  using namespace std;
-  int main(){
-	int a=6;
-	cout << setw(3) << setfill('0') << a << endl;//006
-	cout << a << endl;//6
-  printf("%03d",a)//006
-	return 0;
-  }
-  ```
-  ### default value
-  * The default values of a boolean array in c++ are undefined. Depending on the compiler, it may be set to *false*.
+### 左边补0
+```cpp
+#include<iostream>//setw,setfill
+#include<iomanip>
+using namespace std;
+int main(){
+int a=6;
+cout << setw(3) << setfill('0') << a << endl;//006
+cout << a << endl;//6
+printf("%03d",a)//006
+return 0;
+}
+```
+### default value
+* The default values of a boolean array in c++ are undefined. Depending on the compiler, it may be set to *false*.
+
+### fill()
+```cpp
+#include<algorithm>
+using namespace std;
+int main(){
+  int a[10];
+  fill(a,a+10,1);// a={1,1,1,1,1,1,1,1,1,1}
+  int b[10][10];
+  fill(b[0],b[0]+10*10,1);
+  vector<int> v(8);// 0 0 0 0 0 0 0 0 
+  fill(v.begin(),v.begin()+3,5);// 5 5 5 0 0 0 0 0 
+}
+```
