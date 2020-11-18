@@ -130,7 +130,7 @@
   main ()
   {
   char m[20];
-  gets(m); //不能写成m=gets();
+  gets(m); //wrong:m=gets();
   cout<<m<<endl;
   }
   ```
@@ -210,6 +210,14 @@ int main(){
   s=s.substr(1);//s="bcdefg"
   s=s.substr(2,3);//s="def"
   //2 is the start index, 3 is the length of substr we want
+}
+```
+### reverse()
+```cpp
+#include<algorithm>//reverse
+main{
+  string s="hello";
+  reverse(s.begin(),s.end());//s="olleh"
 }
 ```
 
@@ -415,5 +423,33 @@ int main(){
   fill(b[0],b[0]+10*10,1);
   vector<int> v(8);// 0 0 0 0 0 0 0 0 
   fill(v.begin(),v.begin()+3,5);// 5 5 5 0 0 0 0 0 
+}
+```
+### upper_bound() and lower_bound()
+```cpp
+#include<algorithm>
+#include<iostream>
+using namespace std;
+int main(){
+  int a[10]={0,1,3,3,4,4,4,5,6,7};
+  int p=upper_bound(a,a+10,4)-a;//p=7,a[p]=5
+  p=lower_bound(a,a+10,4)-a;//p=4,a[p]=4
+
+  p=upper_bound(a,a+10,2)-a;//p=2,a[p]=3
+  p=lower_bound(a,a+10,2)-a;//p=2,a[p]=3
+
+  p=upper_bound(a,a+10,-1)-a;//p=0,a[p]=0
+  p=lower_bound(a,a+10,-1)-a;//p=0,a[p]=0
+
+  p=upper_bound(a,a+10,20)-a;//p=10
+  p=lower_bound(a,a+10,20)-a;//p=10
+
+  // upper_bound and lower_bound are both for inserting a number into a orderly sequence and still keep it in order. 
+  //The difference is lower_bound find the smallest index to insert, the upper_bound find the biggest.
+
+  // if we want to insert into sequence in reversed order, we can still use these two functions
+  int b[5]={5,4,3,2,1};
+  p=upper_bound(b,b+5,4,greater<int>())-b;//p=2
+  p=lower_bound(b,b+5,4,greater<int>())-b;//p=1
 }
 ```
