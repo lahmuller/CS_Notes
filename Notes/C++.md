@@ -453,3 +453,15 @@ int main(){
   p=lower_bound(b,b+5,4,greater<int>())-b;//p=1
 }
 ```
+### accumulate()
+```cpp
+#include<numeric>//accumulate
+using namespace std;
+
+int main(){
+  int a={1,2,3,4,5}
+  int sum=accumulate(a,a+5,0);//sum=1+2+3+4+5+0
+  vector<int> v={1,2,3,4,5};
+  sum=accumulate(v.begin(),v.end(),0);//sum=1+2+3+4+5+0
+}
+```
