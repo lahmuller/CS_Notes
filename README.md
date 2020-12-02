@@ -6,7 +6,7 @@
 ## programming language
 ### [C++](Notes/C++.md)
 ### [Java](Notes/Java.md)
-### [Python](Notes/Python.md)
+### [Python](Notes/Python.ipynb)
 ## Tools
 ### [Git](Notes/Git.md)
 ### [VMWare](Notes/VMWare.md)
