@@ -392,26 +392,24 @@ main(){
 ```
 
 
-## other tips
-### isalnum(char c)
->judge whether ***c*** is a alphabet or number
 
-### 左边补0
+## algorithm
+### count
 ```cpp
-#include<iostream>//setw,setfill
-#include<iomanip>
-using namespace std;
-int main(){
-int a=6;
-cout << setw(3) << setfill('0') << a << endl;//006
-cout << a << endl;//6
-printf("%03d",a)//006
-return 0;
-}
-```
-### default value
-* The default values of a boolean array in c++ are undefined. Depending on the compiler, it may be set to *false*.
+#include<iostream>  
+#include<vector>
+#include<algorithm>  
+using namespace std;  
 
+int main()  
+{  
+    string s="1 2 3 4";
+    cout<<count(s.begin(),s.end(),' ');// count=3
+    vector<int> v={1,2,3,4,5};
+    cout<<count(v.begin(),v.end(),1);// count=1
+    return 0;  
+}  
+```
 ### fill()
 ```cpp
 #include<algorithm>
@@ -453,6 +451,27 @@ int main(){
   p=lower_bound(b,b+5,4,greater<int>())-b;//p=1
 }
 ```
+
+## other tips
+### isalnum(char c)
+>judge whether ***c*** is a alphabet or number
+
+### 左边补0
+```cpp
+#include<iostream>//setw,setfill
+#include<iomanip>
+using namespace std;
+int main(){
+int a=6;
+cout << setw(3) << setfill('0') << a << endl;//006
+cout << a << endl;//6
+printf("%03d",a)//006
+return 0;
+}
+```
+### default value
+* The default values of a boolean array in c++ are undefined. Depending on the compiler, it may be set to *false*.
+
 ### accumulate()
 ```cpp
 #include<numeric>//accumulate
