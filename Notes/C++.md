@@ -220,6 +220,17 @@ main{
   reverse(s.begin(),s.end());//s="olleh"
 }
 ```
+### push_back(char c)
+```cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+	string s1 = "1";
+	s1.push_back('2');
+	cout<<s1<<endl;
+}//12
+```
 
 ## STL
 ### vector
@@ -362,6 +373,19 @@ main{
       if(mymap.count("cc")==0) printf("Not Found");
     }
     ```
+* iterate
+```cpp
+    #include<map>
+    using namespace std;
+    int main(){
+      map<string,int> mymap {{"aa",1},{"bb",2}};
+      map<string,int>::iterator it=mymap.begin();// auto it=mymap.begin()
+      while(it!=mymap.end()){
+        printf("%d ",it->second);
+        it++;
+      }
+    }
+```
 
 ### stack
 ```cpp
