@@ -118,8 +118,21 @@
   main ()
   {
     string str;
+    int n;
+    cin>>n;
     getline(cin,str);
-    cout<<str<<endl;
+    cout<<n<<endl<<str.length();
+    /*
+    input1:10
+          abcd
+    output1:10
+            0
+
+    input1:10abcd
+    output1:10
+            4
+    */
+    // 所以当getline前面有其他输入时，先用getline把上一个输入之后的空白串结束掉，再得到真正想要的字符串
   }
   ```
 * get();it takes a string as input including space
@@ -508,3 +521,16 @@ int main(){
   sum=accumulate(v.begin(),v.end(),0);//sum=1+2+3+4+5+0
 }
 ```
+### ios::sync_with_stdio
+```cpp
+#include <iostream>
+using namespace std;
+int main() 
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    // IO
+}
+```
+[Reference](https://www.cnblogs.com/xwh-blogs/p/12602671.html)
