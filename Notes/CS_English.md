@@ -48,8 +48,8 @@
 | :----: | :----: |
 | synonym | 同义词 |
 | pedigree | 家系 |
-| | |
-| | |
+| apostrophe | 撇号，省略号 |
+| the nuts and bolts of sth | 具体细节，基本要素 |
 | | |
 | | |
 | | |
