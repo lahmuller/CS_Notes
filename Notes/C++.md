@@ -534,3 +534,12 @@ int main()
 }
 ```
 [Reference](https://www.cnblogs.com/xwh-blogs/p/12602671.html)
+
+### INT_MAX and INT_MIN
+```cpp
+#include<limits.h>
+int main(){
+  int min=INT_MAX,max=INT_MIN;
+  //INT_MAX=2^31-1,INT_MIN=-2^31
+}
+```
