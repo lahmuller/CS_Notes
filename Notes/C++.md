@@ -506,6 +506,24 @@ printf("%03d",a)//006
 return 0;
 }
 ```
+### precision
+```cpp
+#include <iostream>
+#include<iomanip>
+using namespace std;
+
+int main()
+{
+  //setprecsion(2) 保留2位有效数字
+  cout<<setprecision(2)<<0.11;//0.11
+  cout<<setprecision(2)<<0.10;//0.1
+  //若要控制小数点后几位数字
+  cout<<fixed<<setprecision(2)<<0.10;//0.10
+  //在此之后的输入都会被setprecision（2）限制
+  //可以通过重新设置setprecision（N）或者 unsetf（ios::fixed)解除限制
+  return 0;
+}
+```
 ### default value
 * The default values of a boolean array in c++ are undefined. Depending on the compiler, it may be set to *false*.
 
@@ -543,3 +561,35 @@ int main(){
   //INT_MAX=2^31-1,INT_MIN=-2^31
 }
 ```
+
+### sscanf and ssprintf
+* sscanf从字符串中读取指定内容
+```cpp
+#include <iostream>
+int main()
+{
+    char str[100] ="123568qwerSDDAE";
+    char lowercase[100];
+    int num;
+    sscanf(str,"%d %[a-z]", &num, lowercase);
+    printf("The number is: %d.\n", num);
+    printf("The lowercase is: %s.", lowercase);
+    return 0;
+}
+```
+* ssprintf是将格式化的数据写入字符串中
+```cpp
+#include <iostream>
+int main()
+{
+    char s[10];
+    sprintf(s,"%d",123);//s="123"
+    sprintf(s,"%8x",4567);//s="    11d7";16进制，宽度为8，右对齐
+    return 0;
+}
+```
+This is used in [PAT/A1108](PAT/A1108.md)
+
+Reference
+* [http://c.biancheng.net/cpp/html/296.html](http://c.biancheng.net/cpp/html/296.html)
+* [https://blog.csdn.net/u013178472/article/details/53433939](https://blog.csdn.net/u013178472/article/details/53433939)
