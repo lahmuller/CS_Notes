@@ -319,11 +319,26 @@ int main()
   vector dones't have find() itself, but we can use the find() in algorithm
   ```cpp
   #include<algorithm>
+  #include<vector>
   using namespace std;
   int main(){
     vector<int> v;
     v.push_back(1);
     if(find(v.begin(),v.end(),1)==v.end()) printf("no 1 in vector");
+  }
+  ```
+* comparing two vector
+  
+  We can compare two vectors directly
+  ```cpp
+  #include<iostream>
+  #include<vector>
+  using namespace std;
+  int main(){
+    vector<int> v {1,2,3};
+    vector<int> v2 {1,2,3};
+    if(v==v2) printf("Equal");
+    // It will compare the items of two vectors one by one like comparing two strings
   }
   ```
   
