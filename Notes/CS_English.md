@@ -30,7 +30,7 @@
 | palindromic | 回文的 |
 | scientific notation | 科学计数法 |
 | factorization | 因式分解 |
-| | |
+| modulo | 以...为模|
 | | |
 | | |
 | | |
@@ -50,7 +50,7 @@
 | pedigree | 家系 |
 | apostrophe | 撇号，省略号 |
 | the nuts and bolts of sth | 具体细节，基本要素 |
-| | |
+| alias | 化名 |
 | | |
 | | |
 | | |
