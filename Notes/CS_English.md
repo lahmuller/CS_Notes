@@ -11,7 +11,7 @@
 | acyclic | 非周期的；非循环的；无环的；非环状的 |
 | indent | 缩进 |
 | asterisk | 星号 * |
-| | |
+| refactoring | 重构，代码重构 |
 | | |
 | | |
 | | |
