@@ -608,3 +608,19 @@ This is used in [PAT/A1108](PAT/A1108.md)
 Reference
 * [http://c.biancheng.net/cpp/html/296.html](http://c.biancheng.net/cpp/html/296.html)
 * [https://blog.csdn.net/u013178472/article/details/53433939](https://blog.csdn.net/u013178472/article/details/53433939)
+
+### struct pointer
+```cpp
+#include<iostream>
+using namespace std;
+struct node{
+    node *a=nullptr;
+    node *b=nullptr;
+};
+int main(){
+    node *k;
+    if(k->b==nullptr) printf("empty pointer");// this will not be showed
+    k=new node();
+    if(k->b==nullptr) printf("empty pointer");// this will be showed
+}
+```
