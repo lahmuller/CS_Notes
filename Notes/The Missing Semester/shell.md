@@ -124,3 +124,266 @@ date ranges from 27th to 38th character in the output string of ls-l semester on
 ```bash
 cat /sys/class/power_supply/BAT1/capacity
 ```
+# Lesson 2
+```bash
+clay@LAPTOP-TA3R21QJ:~$ foo=bar
+clay@LAPTOP-TA3R21QJ:~$ echo $foo
+bar
+clay@LAPTOP-TA3R21QJ:~$ foo = bar
+
+Command 'foo' not found, did you mean:
+
+  command 'fop' from deb fop (1:2.4-2)
+  command 'fio' from deb fio (3.16-1)
+  command 'goo' from deb goo (0.155+ds-1)
+
+Try: sudo apt install <deb name>
+```
+You can define a variable in shell like first line, and space is reserved for seperating arguments. So if we type foo = bar , shell will recognize foo as a command, = and bar as its arguments.
+
+```bash
+clay@LAPTOP-TA3R21QJ:~$ echo "hello"
+hello
+clay@LAPTOP-TA3R21QJ:~$ echo 'world'
+world
+clay@LAPTOP-TA3R21QJ:~$ echo "value is $foo"
+value is bar
+clay@LAPTOP-TA3R21QJ:~$ echo 'value is $foo'
+value is $foo
+```
+We can use single or double quote in shell to define a string, they are same for literature text, but the variable in double quote will be replaced by its value, and in single quote it won't.
+
+```bash
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ vim mcd.sh
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ source mcd.sh
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ ls
+hello.txt  hello2.txt  mcd.sh  missing
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ mcd test
+clay@LAPTOP-TA3R21QJ:~/linuxTest/test$
+```
+>mcd(){  
+    mkdir -p "$1"  
+    cd "$1"  
+}
+
+source mcd.sh define the mcd function into shell. So we can execute the mcd now.
+|command| meaning |
+| :----: | :----: |
+| $0 | the name of the command |
+| $1~$9 | the first to the nineth argument of the command |
+| $? | the error code of last command |
+|  $_ | the last argument from last command |
+| !! | the last command　|
+| $# | the number of arguments|
+| $$ | the pid |
+| $@ | the list of all arg |
+```bash
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ mkdir /new
+mkdir: cannot create directory ‘/new’: Permission denied
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ sudo !!
+sudo mkdir /new
+[sudo] password for clay:
+```
+
+```bash
+clay@LAPTOP-TA3R21QJ:~$ true
+clay@LAPTOP-TA3R21QJ:~$ echo $?
+0
+clay@LAPTOP-TA3R21QJ:~$ false
+clay@LAPTOP-TA3R21QJ:~$ echo $?
+1
+clay@LAPTOP-TA3R21QJ:~$ true || echo "will not be printed"
+clay@LAPTOP-TA3R21QJ:~$ false || echo "Oops, fail"
+Oops, fail
+clay@LAPTOP-TA3R21QJ:~$ true && echo "will be printed"
+will be printed
+clay@LAPTOP-TA3R21QJ:~$ false && echo "will not be printed"
+clay@LAPTOP-TA3R21QJ:~$ false ; echo "This will always print"
+This will always print
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ foo=$(pwd)
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ echo $foo
+/home/clay/linuxTest
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ echo "We are in $(pwd)"
+We are in /home/clay/linuxTest
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ cat <(ls) <(ls ..)
+hello.txt
+hello2.txt
+mcd.sh
+missing
+test
+CS_Notes
+last-modified.txt
+linuxTest
+```
+cat can concatenate the output of (ls) and (ls ..)
+
+ls *.sh list all .sh file, ? can only match one character.
+
+```bash
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ mkdir foo{,1,2,29}
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ ls
+example.sh  foo  foo1  foo2  foo29  hello.txt  hello2.txt  mcd.sh  missing  null  test
+```
+{} expand the content
+```bash
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ touch {foo,bar}/{a..j}
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ cd foo
+clay@LAPTOP-TA3R21QJ:~/linuxTest/foo$ ls
+a  b  c  d  e  f  g  h  i  j
+clay@LAPTOP-TA3R21QJ:~/linuxTest/foo$ cd ../bar
+clay@LAPTOP-TA3R21QJ:~/linuxTest/bar$ ls
+a  b  c  d  e  f  g  h  i  j
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ touch foo/x bar/y
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ diff <(ls foo) <(ls bar)
+11c11
+< x
+---
+> y
+```
+find命令
+```bash
+find . -name src -t d
+```
+`.`表示在当前目录下搜索，src表示名称，`-t`代表type，`d`代表directory
+
+grep命令:搜索文件中的字符（ripgrep,rg)
+```bash
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ grep foobar mcd.sh
+# foobar
+```
+递归搜索文件夹-R
+```bash
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ grep -R foobar .
+./mcd.sh:# foobar
+./null: grep foobar "$file" > ./null 2>./null
+./null:         echo "File $file does not have any foobar, adding one"
+./null:         echo "# foobar" >> "$file"
+./example.sh:   grep foobar "$file" > ./null 2>./null
+./example.sh:           echo "File $file does not have any foobar, adding one"
+./example.sh:           echo "# foobar" >> "$file"
+```
+history列出shell中执行过的指令，配合grep使用更佳
+```bash
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ history | grep tldr
+  338  pip install tldr
+  339  tldr grep
+  342  tldr
+  343  sudo apt install tldr
+  344  tldr grep
+  345  tldr find
+  399  history | grep tldr
+```
+
+ctrl+R可以进入交互界面，动态匹配使用过的命令
+
+`fzf` is fuzzy find,模糊匹配
+# Exercise
+1. Read `man ls` and write an `ls` command that lists files in the following manner  
+* Includes all files, including hidden files  
+* Sizes are listed in human readable format (e.g. 454M instead of 454279954)  
+* Files are ordered by recency  
+* Output is colorized
+```bash
+clay@LAPTOP-TA3R21QJ:~/linuxTest$ ls -a -h -l -t
+total 48K
+drwxr-xr-x 9 clay clay 4.0K May 13 21:41 ..
+drwxr-xr-x 6 clay clay 4.0K May 13 17:19 .
+-rwxr--r-- 1 clay clay   79 May 13 17:19 script.py
+drwxr-xr-x 2 clay clay 4.0K May 13 17:10 bar
+drwxr-xr-x 2 clay clay 4.0K May 13 17:10 foo
+-rw-r--r-- 1 clay clay   42 May 13 16:43 mcd.sh
+-rw-r--r-- 1 clay clay  125 May 13 16:43 null
+-rw-r--r-- 1 clay clay  287 May 13 16:43 example.sh
+drwxr-xr-x 2 clay clay 4.0K May 13 15:09 test
+drwxr-xr-x 2 clay clay 4.0K May 12 20:31 missing
+-rw-r--r-- 1 clay clay   12 May 12 00:18 hello2.txt
+-rw-r--r-- 1 clay clay    6 May 12 00:10 hello.txt
+```
+2. >Write bash functions marco and polo that do the following. Whenever you execute marco the current working directory should be saved in some manner, then when you execute polo, no matter what directory you are in, polo should cd you back to the directory where you executed marco. For ease of debugging you can write the code in a file marco.sh and (re)load the definitions to your shell by executing source marco.sh.  
+marco.sh
+    ```bash
+    #!/bin/sh
+    marco(){
+        pwd > /tmp/marco.txt
+    }
+
+    polo(){
+        cd &(cat /tmp/marco.txt)
+    }
+    ```
+3. >Say you have a command that fails rarely. In order to debug it you need to capture its output but it can be time consuming to get a failure run. Write a bash script that runs the following script until it fails and captures its standard output and error streams to files and prints everything at the end. Bonus points if you can also report how many runs it took for the script to fail. 
+
+
+    failscript.sh
+    ```bash
+    #!/usr/bin/env bash
+
+    n=$(( RANDOM % 100 ))
+
+    if [[ n -eq 42 ]]; then
+        echo "Something went wrong"
+        >&2 echo "The error was using magic numbers"
+        exit 1
+    fi
+
+    echo "Everything went according to plan"
+    ```
+
+    debug.sh
+    ```bash
+    #!/usr/bin/env bash
+
+    # empty the file
+    >std.out
+    >err.out
+    cnt=0
+    while true; do
+            #./fail_script.sh >> ./std.out 2>> ./err.out || break
+            ./fail_script.sh >> ./std.out 2>> ./err.out
+            if [ $? -ne 0 ]; then
+                    break
+            fi
+            cnt=$((cnt+1))
+    done
+    cat ./std.out ./err.out
+    echo "It takes $cnt runs for the script to fail."
+    ```
+4. >As we covered in the lecture find’s -exec can be very powerful for performing operations over the files we are searching for. However, what if we want to do something with all the files, like creating a zip file? As you have seen so far commands will take input from both arguments and STDIN. When piping commands, we are connecting STDOUT to STDIN, but some commands like tar take inputs from arguments. To bridge this disconnect there’s the xargs command which will execute a command using STDIN as arguments. For example ls | xargs rm will delete the files in the current directory.  
+Your task is to write a command that recursively finds all HTML files in the folder and makes a zip with them. Note that your command should work even if the files have spaces (hint: check -d flag for xargs).
+
+    we have already created some html files, we can list them by using `find`
+    ```bash
+    clay@LAPTOP-TA3R21QJ:~/linuxTest/lesson2$ find . -name "*.html"
+    ./file with space1.html
+    ./file with space2.html
+    ./somefile5.html
+    ./file with space4.html
+    ./somefile3.html
+    ./test/others3.html
+    ./test/others1.html
+    ./test/others2.html
+    ./somefile2.html
+    ./somefile1.html
+    ./file with space3.html
+    ./somefile4.html
+    ```
+
+    As it shows, the files separate with '\n', by looking up the flag `-d` in xargs, we can use `-d '\n'` to let `xargs' separate the args. so here is the answer:
+    ```bash
+    find . -name '*.html' | xargs -d '\n' tar czf target.tar.gz
+    ```
+
+5. >(Advanced) Write a command or script to recursively find the most recently modified file in a directory. More generally, can you list all files by recency?
+# TroubleShooting
+>-bash: /home/username/.local/bin/packagename: No such file or directory
+
+in my situation, I can't execute `tldr`, so here is the solution
+```bash
+clay@LAPTOP-TA3R21QJ:~$ tldr
+-bash: /home/clay/.local/bin/tldr: No such file or directory
+clay@LAPTOP-TA3R21QJ:~$ which tldr
+/usr/bin/tldr
+clay@LAPTOP-TA3R21QJ:~$ type tldr
+tldr is hashed (/home/clay/.local/bin/tldr)
+clay@LAPTOP-TA3R21QJ:~$ hash -r
+```
