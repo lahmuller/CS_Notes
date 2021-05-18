@@ -87,3 +87,4 @@ In this mode, we can select any part of the file by using the keys just like nor
 Visual-line selects the whole line at a time. Visual-block selct the block area.
 
 ## Macro in vim
+Macros is a set of vim operations. q{character} to start recording a macro in register {character}. q to quit recording. @{character} to replay the marco. A macro can be included in other macros. {num}@{character} can replay for {num} times.
