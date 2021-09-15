@@ -540,7 +540,7 @@ int main()
 }
 ```
 ### default value
-* The default values of a boolean array in c++ are undefined. Depending on the compiler, it may be set to *false*.
+*  Default value is the value initially stored in the variable, when it is declared, but not initialized to any value. The default value of boolean data type in Java is false, whereas in C++, it has no default value and contains garbage value (only in case of global variables, it will have default value as false). [more details](https://www.geeksforgeeks.org/comparison-boolean-data-type-c-java/)
 
 ### accumulate()
 ```cpp
